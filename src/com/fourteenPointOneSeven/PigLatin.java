@@ -48,4 +48,23 @@ public class PigLatin {
         stringBuilder.append("ay");
         return stringBuilder.toString();
     }
+
+
+    public String convertPigLatinToEnglishPhrase(String phrase) {
+
+         StringBuilder stringBuilder = new StringBuilder();
+         String [] tokenizedArray = tokenizeEnglishPhrase(phrase);
+        for (int counter = 0; counter < tokenizedArray.length; counter++) {
+            String wordWithoutAy = tokenizedArray[counter].substring(0, tokenizedArray[counter].length() -2);
+            char firstChar = wordWithoutAy.charAt(wordWithoutAy.length()-1);
+            String wordWithOutLastLetter = wordWithoutAy.substring(0,wordWithoutAy.length()-1);
+            stringBuilder.append(firstChar);
+            stringBuilder.append(wordWithOutLastLetter);
+            if (counter != tokenizedArray.length-1){
+                stringBuilder.append(" ");
+            }
+        }
+         String convertedEnglishPhrase = stringBuilder.toString();
+        return convertedEnglishPhrase;
+    }
 }

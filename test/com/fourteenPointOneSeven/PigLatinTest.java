@@ -40,4 +40,9 @@ class PigLatinTest {
 
     }
 
+    @Test
+    void convertPigLatinToEnglishPhrase(){
+       assertEquals("how are you",  pigLatin.convertPigLatinToEnglishPhrase("owhay reaay ouyay"));
+    }
+
 }
