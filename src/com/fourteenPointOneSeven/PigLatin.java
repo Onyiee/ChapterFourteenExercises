@@ -14,26 +14,38 @@ package com.fourteenPointOneSeven;
 //        print the pig Latin word. Enable the user to input the sentence. Keep a running display of
 //        all the converted sentences in a text area.
 
+import java.awt.font.ImageGraphicAttribute;
 import java.util.Scanner;
 
 public class PigLatin {
-    private String phrase;
-
-    public void setPhrase(String phrase) {
-        this.phrase = phrase;
-        Scanner scan = new Scanner(System.in);
-        System.out.println("Enter a phrase: ");
-         phrase = scan.nextLine();
-
-    }
-
-    public String getPhrase() {
-        return phrase;
-    }
 
 
-    public void tokenizeEnglishPhrase(String phrase) {
+    public String[] tokenizeEnglishPhrase(String phrase) {
         String[] tokenizedPhrase = phrase.split(" ");
-       return;
+        return tokenizedPhrase;
+    }
+
+    public String convertPhrase(String phrase) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String[] words = tokenizeEnglishPhrase(phrase);
+        for (int i = 0; i < words.length; i++) {
+           String convertedWord = individualWordConversionToPigLatin(words[i]);
+           stringBuilder.append(convertedWord);
+           if (i != words.length-1 ){
+               stringBuilder.append(" ");
+           }
+
+        }
+        String newWord = stringBuilder.toString();
+        return newWord;
+    }
+
+    public String individualWordConversionToPigLatin(String word) {
+        String wordWithoutFirstLetter = word.substring(1);
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(wordWithoutFirstLetter);
+        stringBuilder.append(word.charAt(0));
+        stringBuilder.append("ay");
+        return stringBuilder.toString();
     }
 }

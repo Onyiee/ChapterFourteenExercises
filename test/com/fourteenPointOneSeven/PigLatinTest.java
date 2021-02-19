@@ -18,19 +18,26 @@ class PigLatinTest {
     void tearDown() {
     }
 
-
-    @Test
-    void acceptPhraseFromUser(){
-        pigLatin.setPhrase("happy");
-       assertEquals("happy", pigLatin.getPhrase());
-    }
-
-
-
     @Test
     void tokenizeEnglishPhrase(){
+        //pigLatin.setPhrase("hello world");
         pigLatin.tokenizeEnglishPhrase("hello world");
-        
+        assertNotNull(pigLatin.tokenizeEnglishPhrase("hello world"));
+        assertEquals(2, pigLatin.tokenizeEnglishPhrase("hello world").length);
+    }
+
+    @Test
+    void convertEachWordToPigLatin(){
+       String convertedWord = pigLatin.individualWordConversionToPigLatin("word");
+      assertNotNull(convertedWord);
+      assertEquals("ordway",convertedWord);
+
+    }
+
+    @Test
+    void convertWordsBackToPhraseWithPigLatin(){
+        assertEquals("owhay reaay ouyay",pigLatin.convertPhrase("how are you"));
+
     }
 
 }
